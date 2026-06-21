@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/formatacao/formatacao.iml" filepath="$PROJECT_DIR$/formatacao/formatacao.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/manutencao.iml" filepath="$PROJECT_DIR$/.idea/manutencao.iml" />
+      <module fileurl="file://$PROJECT_DIR$/simulado/simulado.iml" filepath="$PROJECT_DIR$/simulado/simulado.iml" />
     </modules>
   </component>
 </project>
