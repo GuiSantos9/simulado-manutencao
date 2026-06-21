@@ -299,3 +299,20 @@ public boolean verificarMaiorIdade(Usuario usuario) {
 **Por que é melhor?**
 
 O nome `verificarMaiorIdade` comunica exatamente a intenção do método: verificar se o usuário tem 18 anos ou mais e está ativo no sistema.
+
+---
+
+# 15 Efeito colateral escondido
+
+```java
+public boolean usuarioExiste(String email) {
+    Usuario usuario = usuarioRepository.buscarPorEmail(email);
+    return usuario != null;
+}
+
+public void criarUsuario(String email){
+    if(usuario == null){
+        usuarioRepository.salvar(new Usuario(email));
+    }
+}
+```
