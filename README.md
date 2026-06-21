@@ -302,7 +302,7 @@ O nome `verificarMaiorIdade` comunica exatamente a intenção do método: verifi
 
 ---
 
-# 15 Efeito colateral escondido
+# 15. Efeito colateral escondido
 
 ```java
 public boolean usuarioExiste(String email) {
@@ -314,5 +314,28 @@ public void criarUsuario(String email){
     if(usuario == null){
         usuarioRepository.salvar(new Usuario(email));
     }
+}
+```
+
+---
+
+# 16. Condicionais Aninhadas
+
+```java
+public boolean podeAcessarSistema(Usuario usuario){
+    if(usuario == null) {
+        return false;
+    }
+    if(!usuario.isAtivo()){
+        return false;
+    }
+    if(usuario.isBloqueado()){
+        return false;
+    }
+    if(!usuario.temPermissao("SISTEMA")){
+        return false;
+    }
+    
+    return true;
 }
 ```
