@@ -302,7 +302,7 @@ O nome `verificarMaiorIdade` comunica exatamente a intenção do método: verifi
 
 ---
 
-# 15. Efeito colateral escondido
+### 15. Efeito colateral escondido
 
 ```java
 public boolean usuarioExiste(String email) {
@@ -319,7 +319,7 @@ public void criarUsuario(String email){
 
 ---
 
-# 16. Condicionais Aninhadas
+### 16. Condicionais Aninhadas
 
 ```java
 public boolean podeAcessarSistema(Usuario usuario){
@@ -339,3 +339,92 @@ public boolean podeAcessarSistema(Usuario usuario){
     return true;
 }
 ```
+### 17. Argumento Booleano
+
+- Acredito que deixe a função mais confusa, pois, pois a primicia da funcão seria unicamente processar um pedido porém esse argumento faz com que a função exersa mais de uma função.
+
+- Ele verifica se após a confirmação do pedido, o sistema pode ou não enviar uma confirmação pelo email
+
+** solução proposta: **
+
+```java
+ public void processarPedido(Pedido pedido){
+        pedidoRepository.salvar(pedido);
+    }
+
+    public void processarPedidoEEnviarConfirmacao(Pedido pedido){
+            processarPedido(pedido);
+            emailService.enviarConfirmacao(pedido);
+        }
+    }
+```
+
+### 18. Extract Method
+```java
+public class Recibo {
+    public void emitirRecibo(String cliente, int quantidade, double precoUnitario) {
+        double subtotal = calcularSubtotal(quantidade,precoUnitario);
+        double imposto = calcularImposto(subtotal);
+        double total = subtotal + imposto;
+
+        imprimirRecibo(cliente, quantidade, subtotal, imposto, total);
+        calcularTamanhoDaCompra(total);
+    }
+
+    private double calcularSubtotal(int quantidade, double precoUnitario){
+        return quantidade * precoUnitario;
+    }
+
+    private double calcularImposto(double subtotal){
+        return subtotal * 0.10;
+    }
+
+    private void imprimirRecibo(
+            String cliente,
+            int quantidade,
+            Double subtotal,
+            Double imposto,
+            Double total
+    ){
+        System.out.println("Cliente: " + cliente);
+        System.out.println("Quantidade: " + quantidade);
+        System.out.println("Subtotal: " + subtotal);
+        System.out.println("Imposto: " + imposto);
+        System.out.println("Total: " + total);
+    }
+
+    private void calcularTamanhoDaCompra(double total){
+        if (total > 500) {
+            System.out.println("Compra de alto valor");
+        }
+    }
+
+}
+```
+
+### 19. Extract Variable
+
+``` java
+public class ExtractVariable {
+    public void verificarAprovacao(double notaFinal, int frequencia, boolean fezRecuperacao) {
+
+        boolean aprovado = notaFinal >= 6.0 && frequencia >= 75;
+        boolean aprovadoComRecuperacao = fezRecuperacao && notaFinal >= 5.0 && frequencia >= 80;
+
+        if ((aprovado) || (aprovadoComRecuperacao)) {
+            System.out.println("Aluno aprovado");
+        } else {
+            System.out.println("Aluno reprovado");
+        }
+    }
+}
+````
+### 20. Inline Method
+- No exemplo dado no código, o melhor a ser feíto é de não utilizarmos o inline method.
+- Isso porque o método atingiuValorMinimo facilita a leitura e compreensão do que o bloco if deve fazer dentro do código.
+
+### 21. Inline Temp
+- No exemplo dado no código, o melhor a ser feíto é de não utilizarmos o inline temp.
+- Isso porque a variavel temporaria estoqueBaixo facilita a leitura e compreensão de qual critério usamos para saber quando o estoque está baixo por isso, deve ser mantida no código.
+
+### 22. 
